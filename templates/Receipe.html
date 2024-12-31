@@ -1,0 +1,63 @@
+
+{% comment %} {% load static %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recipe</title>
+    {% comment %} <link rel="stylesheet" href="{%static 'css/style.css'%}" /> {% endcomment %}
+  </head>
+  <body>
+    <div class="main_container">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Recipe</h2>
+        <div class="R_name">
+          <label for="R_Name">Name</label>
+          <input class="input urs_inp" name="Name" id="R_Name" />
+        </div>
+        <div class="R_description" style="margin-top: 20px">
+          <label for="R_Des">Description</label>
+          <textarea
+            class="textarea urs_inp"
+            name="Description"
+            id="R_Des"
+            placeholder="Enter here..."
+          ></textarea>
+        </div>
+        <div class="R_ingredients" style="margin-top: 20px">
+          <label for="R_Ingredients">Ingredients</label>
+          <textarea
+            class="textarea urs_inp"
+            name="Ingredients"
+            id="R_Ingredients"
+            placeholder="Enter here..."
+          ></textarea>
+        </div>
+        <div class="file-upload">
+          <label for="file" class="file-label">
+            <span>Choose File</span>
+          </label>
+          <input
+            type="file"
+            id="file"
+            class="file-input urs_inp"
+            onchange="updateFileName(this)"
+          />
+          <div class="file-name" id="file-name">No file chosen</div>
+        </div>
+        <button type="submit">
+          <span>Submit</span>
+        </button>
+      </form>
+    </div>
+    <script>
+      function updateFileName(input) {
+        const fileNameElement = document.getElementById("file-name");
+        const fileName =
+          input.files.length > 0 ? input.files[0].name : "No file chosen";
+        fileNameElement.textContent = fileName;
+      }
+    </script>
+  </body>
+</html>
