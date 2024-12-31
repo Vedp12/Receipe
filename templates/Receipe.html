@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Recipe</title>
-    <link rel="stylesheet" href="{%static 'css/style.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
   </head>
   <body>
     <div class="main_container">
@@ -41,6 +41,7 @@
           <input
             type="file"
             id="file"
+            name="Iamge"
             class="file-input urs_inp"
             onchange="updateFileName(this)"
           />
