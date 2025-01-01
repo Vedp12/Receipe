@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from .models import *
 # Create your views here.
@@ -7,22 +7,23 @@ from .models import *
 def default(request):
     return HttpResponse("Hello")
 
-def receipe1(request):
+def receipe(request):
     
     if request.method=="POST":
         Name=request.POST.get("Name")
         Description=request.POST.get("Description")
         Ingredients=request.POST.get("Ingredients")
-        Image=request.FILES.get("Iamge")
+        Iamge=request.FILES.get("Iamge")
         
-        print(Name, Description, Ingredients)
-        print(f"{Image}")
+        print(Name, Description, Ingredients, Iamge)
+        # print(f"{}")
         
         Receipe.objects.create(
             Name=Name, 
             Description=Description,
             Ingredients=Ingredients,
-            Iamge=Image
-        )
-        
-    return render(request,"Receipe.html")
+            Iamge=Iamge
+            )
+        return redirect('/Receipe/')
+    # query_set=Receipe.objects.all()
+    return render(request,"Receipe.html",{'Receipe':Receipe.objects.all()})

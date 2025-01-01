@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,6 +5,12 @@
     <meta charset="UTF-8" />
     <title>Recipe</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="main_container">
@@ -52,13 +57,47 @@
         </button>
       </form>
     </div>
-    <script>
-      function updateFileName(input) {
-        const fileNameElement = document.getElementById("file-name");
-        const fileName =
-          input.files.length > 0 ? input.files[0].name : "No file chosen";
-        fileNameElement.textContent = fileName;
-      }
-    </script>
+
+    <br />
+    <br />
   </body>
+
+  <table class="table table-striped table-bordered" style="margin-top: 20px">
+    <thead style="padding=30px">
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Ingredients</th>
+        <th scope="col">Image</th>
+        <th scope="col">button</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for receipes in Receipe%}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{receipes.Name}}</td>
+        <td>{{receipes.Description}}</td>
+        <td>{{receipes.Ingredients}}</td>
+        <td><img id="image_table" src="{{receipes.Iamge.url}}" /></td>
+        <td style="padding=100px">
+          {% comment %} <button type="submit" class="btn btn-xs btn-danger" style="width: 80px; padding: 10px">update</button> {% endcomment %}
+          <button type="submit" class="btn btn-xs btn-danger" style="width: 80px; padding: 10px">
+            Delete
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script>
+    function updateFileName(input) {
+      const fileNameElement = document.getElementById("file-name");
+      const fileName =
+        input.files.length > 0 ? input.files[0].name : "No file chosen";
+      fileNameElement.textContent = fileName;
+    }
+  </script>
 </html>
