@@ -27,3 +27,9 @@ def receipe(request):
         return redirect('/Receipe/')
     # query_set=Receipe.objects.all()
     return render(request,"Receipe.html",{'Receipe':Receipe.objects.all()})
+
+def Deletereceipe(request ,id):
+    print(f"This is Receipe's id = {id}")
+    query_set = Receipe.objects.get(id=id)
+    query_set.delete()
+    return redirect('/Receipe/')

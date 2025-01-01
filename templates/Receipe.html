@@ -82,10 +82,9 @@
         <td>{{receipes.Ingredients}}</td>
         <td><img id="image_table" src="{{receipes.Iamge.url}}" /></td>
         <td style="padding=100px">
-          {% comment %} <button type="submit" class="btn btn-xs btn-danger" style="width: 80px; padding: 10px">update</button> {% endcomment %}
-          <button type="submit" class="btn btn-xs btn-danger" style="width: 80px; padding: 10px">
-            Delete
-          </button>
+          <a href="/Deletereceipe/{{receipes.id}}/" class="btn btn-danger"
+            >Delete</a
+          >
         </td>
       </tr>
       {% endfor %}
