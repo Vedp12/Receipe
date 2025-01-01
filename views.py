@@ -16,7 +16,7 @@ def receipe(request):
         Iamge=request.FILES.get("Iamge")
         
         print(Name, Description, Ingredients, Iamge)
-        # print(f"{}")
+        print(id)
         
         Receipe.objects.create(
             Name=Name, 
@@ -33,3 +33,21 @@ def Deletereceipe(request ,id):
     query_set = Receipe.objects.get(id=id)
     query_set.delete()
     return redirect('/Receipe/')
+# return
+ 
+def Updatereceipe(request,id):
+    queryset = Receipe.objects.get(id=id)
+    if request.method=="POST":
+        Name=request.POST.get("Name")
+        Description=request.POST.get("Description")
+        Ingredients=request.POST.get("Ingredients")
+        Iamge=request.FILES.get("Iamge")
+        
+        queryset.Name=Name
+        queryset.Description=Description
+        queryset.Ingredients=Ingredients
+        queryset.Iamge=Iamge
+        queryset.save()
+        
+        return redirect('/Receipe/')
+    return render(request,"Updatereceipe.html",{'Receipe':queryset})

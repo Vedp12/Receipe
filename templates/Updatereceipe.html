@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Recipe</title>
+    <title>Update Recipe</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}" />
     <link
       rel="stylesheet"
@@ -19,7 +19,12 @@
         <h2>Recipe</h2>
         <div class="R_name">
           <label for="R_Name">Name</label>
-          <input class="input urs_inp" name="Name" id="R_Name" />
+          <input
+            class="input urs_inp"
+            value="{{Receipe.Name}}"
+            name="Name"
+            id="R_Name"
+          />
         </div>
         <div class="R_description" style="margin-top: 20px">
           <label for="R_Des">Description</label>
@@ -28,7 +33,9 @@
             name="Description"
             id="R_Des"
             placeholder="Enter here..."
-          ></textarea>
+          >
+{{Receipe.Description}}</textarea
+          >
         </div>
         <div class="R_ingredients" style="margin-top: 20px">
           <label for="R_Ingredients">Ingredients</label>
@@ -37,7 +44,16 @@
             name="Ingredients"
             id="R_Ingredients"
             placeholder="Enter here..."
-          ></textarea>
+            {%
+            comment
+            %}
+            value="{{Receipe.Ingredients}}"
+            {%
+            endcomment
+            %}
+          >
+{{Receipe.Ingredients}}</textarea
+          >
         </div>
         <div class="file-upload">
           <label for="file" class="file-label">
@@ -53,7 +69,7 @@
           <div class="file-name" id="file-name">No file chosen</div>
         </div>
         <button type="submit">
-          <span>Submit</span>
+          <span>Update Submit</span>
         </button>
       </form>
     </div>
@@ -62,36 +78,8 @@
     <br />
   </body>
 
-  <table class="table table-striped table-bordered" style="margin-top: 20px">
-    <thead style="padding=30px">
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Ingredients</th>
-        <th scope="col">Image</th>
-        <th scope="col">button</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for receipes in Receipe%}
-      <tr>
-        <th scope="row">{{forloop.counter}}</th>
-        <td>{{receipes.Name}}</td>
-        <td>{{receipes.Description}}</td>
-        <td>{{receipes.Ingredients}}</td>
-        <td><img id="image_table" src="{{receipes.Iamge.url}}" /></td>
-        <td style="padding=100px">
-          <a href="/Deletereceipe/{{receipes.id}}/" class="btn btn-danger m-2" >Delete</a>
-          <a href="/Updatereceipe/{{receipes.id}}/" class="btn btn-success m-2" >update</a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
   <script>
-    function updateFileName(input) {
+     function updateFileName(input) {
       const fileNameElement = document.getElementById("file-name");
       const fileName =
         input.files.length > 0 ? input.files[0].name : "No file chosen";
